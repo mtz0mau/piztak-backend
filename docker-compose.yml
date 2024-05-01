@@ -1,0 +1,31 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+    links:
+      - mysql
+    volumes:
+      - .:/var/www/html
+      - vendor-piztak:/var/www/html/vendor
+    networks:
+      - piztaknet
+  mysql:
+    image: mysql:8.0
+    environment:
+      - MYSQL_ROOT_PASSWORD=root1234
+      - MYSQL_DATABASE=piztak
+    ports:
+      - "3306:3306"
+    volumes:
+      - db-data-piztak:/var/lib/mysql
+    networks:
+      - piztaknet
+volumes:
+  db-data-piztak:
+  vendor-piztak:
+networks:
+  piztaknet:
+    driver: bridge
