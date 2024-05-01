@@ -32,11 +32,12 @@ WORKDIR /var/www/html
 # Copia los archivos de la aplicación Laravel
 COPY . .
 
-# Instala las dependencias de Composer
-RUN composer install
+# Copia el script de inicio personalizado
+COPY start.sh /usr/local/bin/start.sh
+RUN chmod +x /usr/local/bin/start.sh
 
-# Expone el puerto 80 para acceder a la aplicación Laravel
+# Expone el puerto 8000 para acceder a la aplicación Laravel
 EXPOSE 8000
 
 # Comando por defecto para iniciar la aplicación
-CMD ["php", "artisan", "serve", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["/usr/local/bin/start.sh"]
