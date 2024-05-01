@@ -29,13 +29,14 @@ ENV PATH="${PATH}:/composer/vendor/bin"
 # Establece el directorio de trabajo
 WORKDIR /var/www/html
 
+# Copia los archivos de la aplicación Laravel
 COPY . .
 
 # Instala las dependencias de Composer
 RUN composer install
 
 # Expone el puerto 80 para acceder a la aplicación Laravel
-EXPOSE 80
+EXPOSE 8000
 
 # Comando por defecto para iniciar la aplicación
-CMD ["php", "artisan", "serve", "--host", "0.0.0.0", "--port", "80"]
+CMD ["php", "artisan", "serve", "--host", "0.0.0.0", "--port", "8000"]
