@@ -12,7 +12,7 @@
 <body>
     <header>
         <!-- place navbar here -->
-        API Piztak v2.1 Local
+        API Piztak v2.2 Local
     </header>
 </body>
 </html>
